@@ -49,7 +49,7 @@ bintray {
 		websiteUrl = 'https://cogswell.io/#'
 		userOrg = 'hfortier' // bintray username
 		licenses = ['Apache-2.0']
-		vcsUrl = 'https://cogswell.io/'
+		vcsUrl = 'https://github.com/cogswell-io/cogs-java-tools-sdk'
 		labels = ['iot','message broker','big data']
 		publicDownloadNumbers = true
 		version {

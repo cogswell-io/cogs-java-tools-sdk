@@ -1,4 +1,4 @@
-[ ![Download](https://api.bintray.com/packages/hfortier/maven/cogs-java-tools-sdk/images/download.svg) ](https://bintray.com/hfortier/maven/cogs-sandbox/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/hfortier/maven/io.cogswell/images/download.svg) ](https://bintray.com/hfortier/maven/io.cogswell/_latestVersion)
 ## Install gradle 
 
 
