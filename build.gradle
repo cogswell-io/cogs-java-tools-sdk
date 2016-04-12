@@ -1,0 +1,74 @@
+plugins {
+    id "com.jfrog.bintray" version "1.6"
+}
+
+group 'io.cogswell'
+
+// Reference: http://www.tikalk.com/devops/increment-version-numbers-in-gradle/
+task buildnumberplusone {
+    Properties props = new Properties()
+    File propsFile = new File('src/main/resources/version.properties')
+    props.load(propsFile.newDataInputStream())
+    Integer nextbuildnum = ( ((props.getProperty('artifactBuildNumber')) as BigDecimal) + 1 )
+    props.setProperty('artifactBuildNumber', nextbuildnum.toString())
+
+    version = props.getProperty('artifactMajorVersion') + "." + nextbuildnum
+
+    props.store(propsFile.newWriter(), null)
+}
+
+allprojects {
+	repositories {
+		jcenter()
+	}
+	apply plugin: 'maven'
+	apply plugin: 'maven-publish'
+	apply plugin: 'java'
+}
+
+sourceCompatibility = 1.8
+
+publishing {
+	publications {
+		MyPublication(MavenPublication) {
+			from components.java
+		}
+	}
+}
+
+bintray {
+	user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+	key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+        dryRun = false
+        publish = System.getenv('BINTRAY_PUBLISH')=='true' 
+	publications = ['MyPublication']
+	pkg {
+		repo = 'maven' // always maven
+		name = group
+		desc = 'Cogswell.io: Cogs Java Test Tools SDK'
+		websiteUrl = 'https://cogswell.io/#'
+		userOrg = 'hfortier' // bintray username
+		licenses = ['Apache-2.0']
+		vcsUrl = 'https://cogswell.io/'
+		labels = ['iot','message broker','big data']
+		publicDownloadNumbers = true
+		version {
+			released = new Date()
+		}
+	}
+        println 'Publishing '+pkg.userOrg+'/'+pkg.repo+'/'+pkg.name+'/'+version+' NOTE: '+(publish?'This package will be automatically published':'Someone will need to manually publish this package at bintray.com')
+}
+
+dependencies {
+	compile 'org.json:json:20150729'
+}
+
+jar {
+	from {
+		["LICENSE.txt","NOTICE.txt"]
+	}
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.4'
+}
