@@ -1,18 +1,14 @@
 [ ![Download](https://api.bintray.com/packages/hfortier/maven/io.cogswell/images/download.svg) ](https://bintray.com/hfortier/maven/io.cogswell/_latestVersion)
-## Install gradle 
-
+## Compile and install the source 
 
 This project uses gradle.
 
+Linux:
 ```
-cd /path/to/the/project/root
-sudo add-apt-repository ppa:cwchien/gradle
-sudo apt-get update
-sudo apt-get install gradle
+./gradlew install
 ```
 
-## Compile and install the source
-
+Windows:
 ```
-gradle install
+gradlew.bat install
 ```

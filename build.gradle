@@ -3,19 +3,7 @@ plugins {
 }
 
 group 'io.cogswell'
-
-// Reference: http://www.tikalk.com/devops/increment-version-numbers-in-gradle/
-task buildnumberplusone {
-    Properties props = new Properties()
-    File propsFile = new File('src/main/resources/version.properties')
-    props.load(propsFile.newDataInputStream())
-    Integer nextbuildnum = ( ((props.getProperty('artifactBuildNumber')) as BigDecimal) + 1 )
-    props.setProperty('artifactBuildNumber', nextbuildnum.toString())
-
-    version = props.getProperty('artifactMajorVersion') + "." + nextbuildnum
-
-    props.store(propsFile.newWriter(), null)
-}
+version = '1.0.1'
 
 allprojects {
 	repositories {
@@ -47,7 +35,7 @@ bintray {
 		name = group
 		desc = 'Cogswell.io: Cogs Java Test Tools SDK'
 		websiteUrl = 'https://cogswell.io/#'
-		userOrg = 'hfortier' // bintray username
+		userOrg = user // bintray username
 		licenses = ['Apache-2.0']
 		vcsUrl = 'https://github.com/cogswell-io/cogs-java-tools-sdk'
 		labels = ['iot','message broker','big data']
@@ -70,5 +58,5 @@ jar {
 }
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '2.4'
+	gradleVersion = '2.12'
 }
