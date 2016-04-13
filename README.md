@@ -1,7 +1,7 @@
-[ ![Download](https://api.bintray.com/packages/hfortier/maven/io.cogswell/images/download.svg) ](https://bintray.com/hfortier/maven/io.cogswell/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/cogswell-io/maven/cogs-java-tools-sdk/images/download.svg) ](https://bintray.com/cogswell-io/maven/cogs-java-tools-sdk/_latestVersion)
 ## Compile and install the source 
 
-This project uses gradle.
+This project uses gradle wrapper, so you don't need to install gradle: you only need to run gradlew.
 
 Linux:
 ```

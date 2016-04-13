@@ -3,7 +3,10 @@ plugins {
 }
 
 group 'io.cogswell'
-version = '1.0.1'
+version = '1.0.0'
+Properties props = new Properties()
+props.load(new File('settings.gradle').newDataInputStream())
+def packageName =  props.getProperty('rootProject.name').replaceAll("'","")
 
 allprojects {
 	repositories {
@@ -32,8 +35,8 @@ bintray {
 	publications = ['MyPublication']
 	pkg {
 		repo = 'maven' // always maven
-		name = group
-		desc = 'Cogswell.io: Cogs Java Test Tools SDK'
+		name = packageName
+		desc = 'cogswell.io: Cogs Java Test Tools SDK'
 		websiteUrl = 'https://cogswell.io/#'
 		userOrg = user // bintray username
 		licenses = ['Apache-2.0']
