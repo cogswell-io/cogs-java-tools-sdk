@@ -40,7 +40,11 @@ This API route is used to generate new client salt/secret pairs for use in authe
 
 ```java
 import java.util.concurrent.Future;
+import java.util.concurrent.CancelledException;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 import com.gambit.tools.sdk.request.GambitRequestClientSecret;
+import com.gambit.sdk.GambitResponse;
 
 GambitRequestClientSecret.Builder keyReqBuilder;
 
@@ -71,7 +75,12 @@ This API route is used in order to generate random (version 4) UUID from a solid
 
 ```java
 import java.util.concurrent.Future;
+import java.util.concurrent.CancelledException;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 import com.gambit.tools.sdk.request.GambitRequestRandomUUID;
+import com.gambit.sdk.GambitResponse;
+
 
 GambitRequestRandomUUID.Builder uuidReqBuilder;
 
