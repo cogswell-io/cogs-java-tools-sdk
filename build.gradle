@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'io.cogswell'
-version = '1.0.0'
+version = '1.0.3'
 Properties props = new Properties()
 props.load(new File('settings.gradle').newDataInputStream())
 def packageName =  props.getProperty('rootProject.name').replaceAll("'","")
@@ -19,10 +19,22 @@ allprojects {
 
 sourceCompatibility = 1.8
 
+task sourcesJar(type: Jar, dependsOn: classes) {
+    from sourceSets.main.allJava
+    classifier = 'sources'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from javadoc.destinationDir
+    classifier = 'javadoc'
+}
+
 publishing {
 	publications {
 		MyPublication(MavenPublication) {
 			from components.java
+			artifact sourcesJar
+			artifact javadocJar
 		}
 	}
 }
